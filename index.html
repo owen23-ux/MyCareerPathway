@@ -74,6 +74,7 @@
         }
         .checklist-item {
             transition: all 0.2s ease;
+            cursor: pointer;
         }
         .checklist-item:hover {
             background: rgba(14, 165, 233, 0.1);
@@ -121,6 +122,15 @@
             background: linear-gradient(135deg, #007A4D 0%, #FFB612 50%, #DE3831 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .phase-content {
+            display: block !important;
+        }
+        .phase-content.hidden {
+            display: none !important;
+        }
+        .rotate-180 {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -222,7 +232,7 @@
                     <div class="text-sm text-slate-400 mt-1">TryHackMe Labs</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl font-bold text-cyan-400">5</div>
+                    <div class="text-3xl font-bold text-cyan-400">6</div>
                     <div class="text-sm text-slate-400 mt-1">Portfolio Projects</div>
                 </div>
                 <div class="text-center">
@@ -269,7 +279,7 @@
                                 <i class="fas fa-project-diagram text-purple-400 text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white">5 Portfolio Projects</h4>
+                                <h4 class="font-semibold text-white">6 Portfolio Projects</h4>
                                 <p class="text-sm text-slate-400">Build Honeypots, SOC Labs, SIEM Dashboards, Threat Hunting, and CI/CD Pipelines</p>
                             </div>
                         </div>
@@ -317,7 +327,7 @@
         </div>
     </section>
 
-    <!-- Visual Pathway Map - Updated to 6 Months -->
+    <!-- Visual Pathway Map - All Phases Open by Default -->
     <section id="pathway" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -329,7 +339,7 @@
                 <!-- Connecting Line -->
                 <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 pathway-line rounded-full"></div>
 
-                <!-- Phase 1 - Months 1-2 -->
+                <!-- Phase 1 - Months 1-2 (Open by Default) -->
                 <div class="relative mb-16 md:mb-24">
                     <div class="md:flex items-center justify-between">
                         <div class="md:w-5/12 mb-8 md:mb-0 md:text-right">
@@ -338,8 +348,8 @@
                                 <h3 class="text-2xl font-bold text-white mb-2">Phase 1: Foundations</h3>
                                 <p class="text-slate-400 text-sm mb-4">Accelerated core knowledge with Azure basics, networking fundamentals, and Security+ certification</p>
                                 <div class="flex items-center justify-end space-x-2 text-cyan-400 text-sm">
-                                    <span>View Details</span>
-                                    <i class="fas fa-chevron-down transition-transform" id="icon-phase1"></i>
+                                    <span>Click to Toggle</span>
+                                    <i class="fas fa-chevron-down transition-transform rotate-180" id="icon-phase1"></i>
                                 </div>
                             </div>
                         </div>
@@ -348,8 +358,8 @@
                         </div>
                         <div class="md:w-5/12"></div>
                     </div>
-                    <!-- Expanded Content -->
-                    <div id="phase1" class="hidden mt-6 max-w-3xl mx-auto">
+                    <!-- Expanded Content - Open by Default -->
+                    <div id="phase1" class="phase-content mt-6 max-w-3xl mx-auto">
                         <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
                             <div class="grid md:grid-cols-3 gap-4 mb-6">
                                 <div class="bg-slate-700/50 rounded-lg p-4 text-center">
@@ -372,31 +382,31 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item1')" data-phase="phase1" data-id="phase1-item1">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase1-item1')" data-phase="phase1" data-id="phase1-item1">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Pass AZ-900 Exam</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item2')" data-phase="phase1" data-id="phase1-item2">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase1-item2')" data-phase="phase1" data-id="phase1-item2">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Complete Pre-Security Path</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item3')" data-phase="phase1" data-id="phase1-item3">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase1-item3')" data-phase="phase1" data-id="phase1-item3">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Pass Security+ Exam</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item4')" data-phase="phase1" data-id="phase1-item4">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase1-item4')" data-phase="phase1" data-id="phase1-item4">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Build Azure Honeypot Project</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item5')" data-phase="phase1" data-id="phase1-item5">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase1-item5')" data-phase="phase1" data-id="phase1-item5">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
@@ -407,7 +417,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 2 - Months 3-4 -->
+                <!-- Phase 2 - Months 3-4 (Open by Default) -->
                 <div class="relative mb-16 md:mb-24">
                     <div class="md:flex items-center justify-between">
                         <div class="md:w-5/12"></div>
@@ -420,13 +430,13 @@
                                 <h3 class="text-2xl font-bold text-white mb-2">Phase 2: SOC & Cloud Security</h3>
                                 <p class="text-slate-400 text-sm mb-4">Intensive Security Operations, Azure Security Engineer certification, and SIEM mastery</p>
                                 <div class="flex items-center space-x-2 text-cyan-400 text-sm">
-                                    <span>View Details</span>
-                                    <i class="fas fa-chevron-down transition-transform" id="icon-phase2"></i>
+                                    <span>Click to Toggle</span>
+                                    <i class="fas fa-chevron-down transition-transform rotate-180" id="icon-phase2"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="phase2" class="hidden mt-6 max-w-3xl mx-auto">
+                    <div id="phase2" class="phase-content mt-6 max-w-3xl mx-auto">
                         <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
                             <div class="grid md:grid-cols-3 gap-4 mb-6">
                                 <div class="bg-slate-700/50 rounded-lg p-4 text-center">
@@ -449,31 +459,31 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item1')" data-phase="phase2" data-id="phase2-item1">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase2-item1')" data-phase="phase2" data-id="phase2-item1">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Complete SOC Level 1 Path</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item2')" data-phase="phase2" data-id="phase2-item2">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase2-item2')" data-phase="phase2" data-id="phase2-item2">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Pass AZ-500 Exam</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item3')" data-phase="phase2" data-id="phase2-item3">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase2-item3')" data-phase="phase2" data-id="phase2-item3">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Master Splunk & ELK</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item4')" data-phase="phase2" data-id="phase2-item4">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase2-item4')" data-phase="phase2" data-id="phase2-item4">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Build Home SOC Lab</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item5')" data-phase="phase2" data-id="phase2-item5">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase2-item5')" data-phase="phase2" data-id="phase2-item5">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
@@ -484,7 +494,7 @@
                     </div>
                 </div>
 
-                <!-- Phase 3 - Months 5-6 -->
+                <!-- Phase 3 - Months 5-6 (Open by Default) -->
                 <div class="relative">
                     <div class="md:flex items-center justify-between">
                         <div class="md:w-5/12 mb-8 md:mb-0 md:text-right">
@@ -493,8 +503,8 @@
                                 <h3 class="text-2xl font-bold text-white mb-2">Phase 3: DevSecOps</h3>
                                 <p class="text-slate-400 text-sm mb-4">Automation, CI/CD security, Azure DevOps Expert certification, and advanced projects</p>
                                 <div class="flex items-center justify-end space-x-2 text-cyan-400 text-sm">
-                                    <span>View Details</span>
-                                    <i class="fas fa-chevron-down transition-transform" id="icon-phase3"></i>
+                                    <span>Click to Toggle</span>
+                                    <i class="fas fa-chevron-down transition-transform rotate-180" id="icon-phase3"></i>
                                 </div>
                             </div>
                         </div>
@@ -503,7 +513,7 @@
                         </div>
                         <div class="md:w-5/12"></div>
                     </div>
-                    <div id="phase3" class="hidden mt-6 max-w-3xl mx-auto">
+                    <div id="phase3" class="phase-content mt-6 max-w-3xl mx-auto">
                         <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
                             <div class="grid md:grid-cols-3 gap-4 mb-6">
                                 <div class="bg-slate-700/50 rounded-lg p-4 text-center">
@@ -526,31 +536,31 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item1')" data-phase="phase3" data-id="phase3-item1">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase3-item1')" data-phase="phase3" data-id="phase3-item1">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Master Git & GitHub Actions</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item2')" data-phase="phase3" data-id="phase3-item2">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase3-item2')" data-phase="phase3" data-id="phase3-item2">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Pass AZ-400 Exam</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item3')" data-phase="phase3" data-id="phase3-item3">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase3-item3')" data-phase="phase3" data-id="phase3-item3">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Complete DevSecOps Path</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item4')" data-phase="phase3" data-id="phase3-item4">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase3-item4')" data-phase="phase3" data-id="phase3-item4">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
                                     <span class="text-sm">Build Secure CI/CD Pipeline</span>
                                 </div>
-                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item5')" data-phase="phase3" data-id="phase3-item5">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600" onclick="toggleCheck(this, 'phase3-item5')" data-phase="phase3" data-id="phase3-item5">
                                     <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
                                         <i class="fas fa-check text-xs text-white hidden"></i>
                                     </div>
@@ -985,11 +995,11 @@
         </div>
     </section>
 
-    <!-- Portfolio Projects - 5 Projects -->
+    <!-- Portfolio Projects - 6 Projects -->
     <section id="projects" class="py-20 bg-slate-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">5 Portfolio Projects</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">6 Portfolio Projects</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto">Build these tangible work samples to prove your skills to employers</p>
             </div>
 
@@ -1149,7 +1159,7 @@
                     </div>
                 </div>
 
-                <!-- Project 6 - Extra to make 2 rows of 3 -->
+                <!-- Project 6 -->
                 <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
                     <div class="h-48 bg-gradient-to-br from-red-600 to-pink-600 flex items-center justify-center relative overflow-hidden">
                         <i class="fas fa-search text-8xl text-white/20 absolute"></i>
@@ -1377,4 +1387,387 @@
                                 <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">Cybersecurity Hub SA</a></li>
                                 <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">ISACA South Africa Chapter</a></li>
                                 <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">(ISC)² Johannesburg Chapter</a></li>
-                                <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">ZA Cy
+                                <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">ZA Cyber Security Alliance</a></li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="font-semibold text-white mb-2">Exchange Rate (Approx.)</h4>
+                            <p class="text-sm text-slate-300">1 USD ≈ R18.50 ZAR</p>
+                            <p class="text-xs text-slate-400 mt-1">Prices updated March 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <i class="fas fa-shield-alt text-cyan-400 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">Azure<span class="text-cyan-400">Security</span>Path</span>
+                </div>
+                <div class="text-sm text-slate-500">
+                    © 2026 Your Complete Azure Security Pathway. All rights reserved.
+                </div>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Progress tracking
+        let progressData = JSON.parse(localStorage.getItem('azureSecurityProgress')) || {};
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing progress tracking...');
+            
+            // Make all phases visible by default
+            document.querySelectorAll('.phase-content').forEach(content => {
+                content.classList.remove('hidden');
+            });
+            
+            // Restore checked states from localStorage
+            restoreProgress();
+            
+            // Set default tab
+            switchTab('foundations');
+            
+            // Update progress display
+            updateProgressDisplay();
+            
+            // Add click handlers to all checklist items (ensure they work)
+            document.querySelectorAll('.checklist-item').forEach(item => {
+                // Ensure each item has a data-id
+                if (!item.getAttribute('data-id')) {
+                    console.warn('Checklist item missing data-id:', item);
+                }
+            });
+            
+            console.log('Progress tracking initialized. Total items:', document.querySelectorAll('.checklist-item').length);
+            console.log('Saved progress:', progressData);
+        });
+
+        function toggleProgress() {
+            const sidebar = document.getElementById('progressSidebar');
+            if (sidebar.classList.contains('translate-x-full')) {
+                sidebar.classList.remove('translate-x-full');
+                updateProgressDisplay();
+            } else {
+                sidebar.classList.add('translate-x-full');
+            }
+        }
+
+        function togglePhase(phaseId) {
+            const phaseContent = document.getElementById(phaseId);
+            const icon = document.getElementById('icon-' + phaseId);
+            
+            if (phaseContent) {
+                if (phaseContent.classList.contains('hidden')) {
+                    phaseContent.classList.remove('hidden');
+                    if (icon) icon.classList.add('rotate-180');
+                } else {
+                    phaseContent.classList.add('hidden');
+                    if (icon) icon.classList.remove('rotate-180');
+                }
+            }
+        }
+
+        function toggleCheck(element, itemId) {
+            // Prevent any default behavior
+            if (window.event) {
+                window.event.stopPropagation();
+            }
+            
+            console.log('Toggling check for:', itemId);
+            
+            const checkBox = element.querySelector('.check-box i');
+            if (!checkBox) {
+                console.error('Checkbox icon not found');
+                return;
+            }
+            
+            const isChecked = !checkBox.classList.contains('hidden');
+            
+            if (isChecked) {
+                checkBox.classList.add('hidden');
+                element.classList.remove('checked');
+                delete progressData[itemId];
+                console.log('Unchecked:', itemId);
+            } else {
+                checkBox.classList.remove('hidden');
+                element.classList.add('checked');
+                progressData[itemId] = true;
+                console.log('Checked:', itemId);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('azureSecurityProgress', JSON.stringify(progressData));
+            
+            // Update progress display
+            updateProgressDisplay();
+            
+            // Log current progress
+            console.log('Progress updated. Total completed:', Object.keys(progressData).length);
+        }
+
+        function restoreProgress() {
+            console.log('Restoring progress from localStorage...');
+            
+            // Get all checklist items
+            const checklistItems = document.querySelectorAll('.checklist-item');
+            
+            checklistItems.forEach(item => {
+                const itemId = item.getAttribute('data-id');
+                if (itemId && progressData[itemId]) {
+                    const checkBox = item.querySelector('.check-box i');
+                    if (checkBox) {
+                        checkBox.classList.remove('hidden');
+                        item.classList.add('checked');
+                        console.log('Restored checked:', itemId);
+                    }
+                } else {
+                    const checkBox = item.querySelector('.check-box i');
+                    if (checkBox) {
+                        checkBox.classList.add('hidden');
+                        item.classList.remove('checked');
+                    }
+                }
+            });
+        }
+
+        function updateProgressDisplay() {
+            const totalItems = document.querySelectorAll('.checklist-item').length;
+            const completedItems = Object.keys(progressData).length;
+            const percentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+            
+            const totalProgressEl = document.getElementById('totalProgress');
+            const totalProgressBarEl = document.getElementById('totalProgressBar');
+            
+            if (totalProgressEl) totalProgressEl.textContent = percentage + '%';
+            if (totalProgressBarEl) totalProgressBarEl.style.width = percentage + '%';
+            
+            // Calculate phase progress
+            const phases = ['phase1', 'phase2', 'phase3'];
+            let detailsHTML = '';
+            
+            phases.forEach(phase => {
+                const phaseItems = document.querySelectorAll(`[data-phase="${phase}"]`).length;
+                const phaseCompleted = Object.keys(progressData).filter(key => key.startsWith(phase)).length;
+                const phasePercentage = phaseItems > 0 ? Math.round((phaseCompleted / phaseItems) * 100) : 0;
+                
+                // Get phase name
+                let phaseName = 'Foundations';
+                if (phase === 'phase2') phaseName = 'SOC & Cloud';
+                if (phase === 'phase3') phaseName = 'DevSecOps';
+                
+                detailsHTML += `
+                    <div class="bg-slate-700/50 rounded-lg p-3">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-xs font-medium">${phaseName}</span>
+                            <span class="text-cyan-400 text-xs">${phasePercentage}%</span>
+                        </div>
+                        <div class="w-full bg-slate-600 rounded-full h-1.5">
+                            <div class="progress-bar bg-gradient-to-r from-cyan-400 to-blue-500 h-1.5 rounded-full" style="width: ${phasePercentage}%"></div>
+                        </div>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-xs text-slate-500">${phaseCompleted}/${phaseItems} tasks</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Add total stats
+            const certsCompleted = countCompletedCerts();
+            const projectsCompleted = countCompletedProjects();
+            
+            detailsHTML += `
+                <div class="bg-slate-700/50 rounded-lg p-3 mt-2">
+                    <div class="flex justify-between">
+                        <span class="text-xs font-medium">Total Tasks</span>
+                        <span class="text-cyan-400 text-xs">${completedItems}/${totalItems}</span>
+                    </div>
+                    <div class="flex justify-between mt-1">
+                        <span class="text-xs font-medium">Certifications</span>
+                        <span class="text-green-400 text-xs">${certsCompleted}/4</span>
+                    </div>
+                    <div class="flex justify-between mt-1">
+                        <span class="text-xs font-medium">Projects</span>
+                        <span class="text-purple-400 text-xs">${projectsCompleted}/6</span>
+                    </div>
+                </div>
+            `;
+            
+            const progressDetailsEl = document.getElementById('progressDetails');
+            if (progressDetailsEl) progressDetailsEl.innerHTML = detailsHTML;
+        }
+
+        function countCompletedCerts() {
+            const certTasks = ['phase1-item1', 'phase1-item3', 'phase2-item2', 'phase3-item2'];
+            return certTasks.filter(id => progressData[id]).length;
+        }
+
+        function countCompletedProjects() {
+            const projectTasks = [
+                'phase1-item4', 'phase1-item5', 
+                'phase2-item4', 'phase2-item5', 
+                'phase3-item4', 'phase3-item5'
+            ];
+            return projectTasks.filter(id => progressData[id]).length;
+        }
+
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all progress?')) {
+                progressData = {};
+                localStorage.removeItem('azureSecurityProgress');
+                
+                // Reset all checkboxes
+                document.querySelectorAll('.checklist-item').forEach(item => {
+                    const checkBox = item.querySelector('.check-box i');
+                    if (checkBox) {
+                        checkBox.classList.add('hidden');
+                    }
+                    item.classList.remove('checked');
+                });
+                
+                updateProgressDisplay();
+                console.log('Progress reset');
+            }
+        }
+
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show selected tab content
+            const selectedContent = document.getElementById('content-' + tabName);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+            
+            // Update tab button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-white');
+                btn.classList.add('bg-slate-700', 'text-slate-300');
+            });
+            
+            const selectedTab = document.getElementById('tab-' + tabName);
+            if (selectedTab) {
+                selectedTab.classList.remove('bg-slate-700', 'text-slate-300');
+                selectedTab.classList.add('bg-cyan-500', 'text-white');
+            }
+        }
+
+        // Currency toggle function
+        function setCurrency(currency) {
+            const zarBtn = document.getElementById('currency-zar');
+            const usdBtn = document.getElementById('currency-usd');
+            
+            if (currency === 'zar') {
+                zarBtn.classList.add('bg-cyan-500', 'text-white');
+                zarBtn.classList.remove('bg-slate-800', 'text-slate-300');
+                usdBtn.classList.remove('bg-cyan-500', 'text-white');
+                usdBtn.classList.add('bg-slate-800', 'text-slate-300');
+                
+                // Update all currency displays to ZAR
+                document.querySelectorAll('[data-zar]').forEach(el => {
+                    el.textContent = el.getAttribute('data-zar');
+                });
+                
+                // Update certification costs
+                document.getElementById('cost-az900').textContent = 'R1,800';
+                document.getElementById('cost-security').textContent = 'R7,200';
+                document.getElementById('cost-az500').textContent = 'R3,000';
+                document.getElementById('cost-az400').textContent = 'R3,000';
+                document.getElementById('cost-thm').textContent = 'R600';
+                document.getElementById('total-cost').textContent = '~R15,600';
+            } else {
+                usdBtn.classList.add('bg-cyan-500', 'text-white');
+                usdBtn.classList.remove('bg-slate-800', 'text-slate-300');
+                zarBtn.classList.remove('bg-cyan-500', 'text-white');
+                zarBtn.classList.add('bg-slate-800', 'text-slate-300');
+                
+                // Update all currency displays to USD
+                document.querySelectorAll('[data-usd]').forEach(el => {
+                    el.textContent = el.getAttribute('data-usd');
+                });
+                
+                // Update certification costs
+                document.getElementById('cost-az900').textContent = '$99';
+                document.getElementById('cost-security').textContent = '$392';
+                document.getElementById('cost-az500').textContent = '$165';
+                document.getElementById('cost-az400').textContent = '$165';
+                document.getElementById('cost-thm').textContent = '$60';
+                document.getElementById('total-cost').textContent = '~$881';
+            }
+            
+            // Save preference
+            localStorage.setItem('currency', currency);
+        }
+
+        // Load saved currency preference
+        const savedCurrency = localStorage.getItem('currency') || 'zar';
+        setCurrency(savedCurrency);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Make sure all checklist items have proper data attributes
+        document.querySelectorAll('.checklist-item').forEach((item, index) => {
+            if (!item.getAttribute('data-id')) {
+                // Generate a phase ID based on parent
+                const phase = item.closest('[id^="phase"]')?.id || 'unknown';
+                const newId = `${phase}-item-${index}`;
+                item.setAttribute('data-id', newId);
+                item.setAttribute('data-phase', phase);
+                console.log('Generated ID for item:', newId);
+            }
+        });
+
+        // Debug function to check progress
+        window.checkProgress = function() {
+            console.log('Current progress:', progressData);
+            console.log('Total items:', document.querySelectorAll('.checklist-item').length);
+            console.log('Completed:', Object.keys(progressData).length);
+            console.log('Phase 1 completed:', Object.keys(progressData).filter(key => key.startsWith('phase1')).length);
+            console.log('Phase 2 completed:', Object.keys(progressData).filter(key => key.startsWith('phase2')).length);
+            console.log('Phase 3 completed:', Object.keys(progressData).filter(key => key.startsWith('phase3')).length);
+        };
+
+        // Call checkProgress after load
+        window.addEventListener('load', function() {
+            window.checkProgress();
+        });
+    </script>
+</body>
+</html>
