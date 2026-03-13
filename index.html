@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Security Pathway - 6-Month Accelerated Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        azure: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        cyber: {
+                            400: '#00d4ff',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#164e63',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #0ea5e9 50%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .pathway-line {
+            background: linear-gradient(to bottom, #00d4ff, #0ea5e9, #0369a1);
+        }
+        .phase-card {
+            transition: all 0.3s ease;
+        }
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+        .checklist-item {
+            transition: all 0.2s ease;
+        }
+        .checklist-item:hover {
+            background: rgba(14, 165, 233, 0.1);
+        }
+        .checklist-item.checked {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        .resource-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .resource-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+        .resource-link:hover::after {
+            width: 100%;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        .currency-toggle {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .currency-toggle.active {
+            background: #06b6d4;
+            color: white;
+        }
+        .south-africa-flag {
+            background: linear-gradient(135deg, #007A4D 0%, #FFB612 50%, #DE3831 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="sticky-nav border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield-alt text-cyan-400 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">Azure<span class="text-cyan-400">Security</span>Path</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#introduction" class="text-sm font-medium hover:text-cyan-400 transition-colors">Introduction</a>
+                    <a href="#pathway" class="text-sm font-medium hover:text-cyan-400 transition-colors">Pathway</a>
+                    <a href="#phases" class="text-sm font-medium hover:text-cyan-400 transition-colors">Phases</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-cyan-400 transition-colors">Projects</a>
+                    <a href="#careers" class="text-sm font-medium hover:text-cyan-400 transition-colors">Careers</a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="flex bg-slate-800 rounded-lg p-1 border border-slate-700">
+                        <button onclick="setCurrency('zar')" id="currency-zar" class="currency-toggle active px-3 py-1 rounded-md text-sm font-medium bg-cyan-500 text-white">ZAR R</button>
+                        <button onclick="setCurrency('usd')" id="currency-usd" class="currency-toggle px-3 py-1 rounded-md text-sm font-medium text-slate-300 hover:text-white">USD $</button>
+                    </div>
+                    <button onclick="toggleProgress()" class="bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 px-4 py-2 rounded-lg text-sm font-medium hover:bg-cyan-500/20 transition-all">
+                        <i class="fas fa-chart-line mr-2"></i>Track Progress
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Sidebar (Hidden by default) -->
+    <div id="progressSidebar" class="fixed right-0 top-0 h-full w-80 bg-slate-800/95 backdrop-blur-xl border-l border-slate-700 transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-white">Your Progress</h3>
+                <button onclick="toggleProgress()" class="text-slate-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-slate-700/50 rounded-lg p-4">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-medium">Overall Completion</span>
+                        <span id="totalProgress" class="text-cyan-400 font-bold">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-600 rounded-full h-2">
+                        <div id="totalProgressBar" class="progress-bar bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div id="progressDetails" class="space-y-3 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+                <button onclick="resetProgress()" class="w-full mt-4 px-4 py-2 bg-red-500/10 border border-red-500/50 text-red-400 rounded-lg text-sm font-medium hover:bg-red-500/20 transition-all">
+                    <i class="fas fa-redo-alt mr-2"></i>Reset Progress
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-20 pb-32">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-medium mb-8 animate-float">
+                <i class="fas fa-rocket mr-2"></i>
+                <span class="south-africa-flag font-bold">🇿🇦</span> 6-Month Accelerated Program for South African Professionals
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                <span class="block text-white">Your Complete</span>
+                <span class="gradient-text">Azure Security Pathway</span>
+            </h1>
+            <p class="mt-6 text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                Master Cybersecurity, SOC Analysis, Cloud Security (Azure), and DevSecOps in just 6 months with Microsoft Certifications and TryHackMe Hands-On Labs
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#phases" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/25 transition-all transform hover:-translate-y-1">
+                    Start Your 6-Month Journey
+                </a>
+                <a href="#pathway" class="px-8 py-4 bg-slate-800 border border-slate-600 rounded-lg font-semibold text-white hover:bg-slate-700 transition-all">
+                    View Accelerated Roadmap
+                </a>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400">4</div>
+                    <div class="text-sm text-slate-400 mt-1">Certifications</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400">50+</div>
+                    <div class="text-sm text-slate-400 mt-1">TryHackMe Labs</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400">5</div>
+                    <div class="text-sm text-slate-400 mt-1">Portfolio Projects</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400">6</div>
+                    <div class="text-sm text-slate-400 mt-1">Months Duration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section id="introduction" class="py-20 bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-white">Why This 6-Month Pathway?</h2>
+                    <p class="text-slate-300 mb-6 leading-relaxed">
+                        This accelerated program combines three critical components for breaking into cybersecurity: 
+                        industry-recognized Microsoft Azure certifications, practical TryHackMe hands-on labs, 
+                        and real portfolio projects that prove your skills to employers. Designed specifically for 
+                        South African professionals seeking rapid career advancement.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-certificate text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Microsoft Certifications</h4>
+                                <p class="text-sm text-slate-400">Validate expertise with AZ-900, Security+, AZ-500, and AZ-400</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-laptop-code text-green-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">TryHackMe Labs</h4>
+                                <p class="text-sm text-slate-400">Gamified learning with SOC Level 1, Cyber Defense, and DevSecOps paths</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-project-diagram text-purple-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">5 Portfolio Projects</h4>
+                                <p class="text-sm text-slate-400">Build Honeypots, SOC Labs, SIEM Dashboards, Threat Hunting, and CI/CD Pipelines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur-2xl opacity-20"></div>
+                    <div class="relative glass-effect rounded-2xl p-8 border border-slate-700">
+                        <h3 class="text-xl font-bold mb-4 text-white">Certification Cost Breakdown</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center py-2 border-b border-slate-700">
+                                <span class="text-slate-300">AZ-900 (Azure Fundamentals)</span>
+                                <span id="cost-az900" class="text-cyan-400 font-mono">R1,800</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-700">
+                                <span class="text-slate-300">CompTIA Security+</span>
+                                <span id="cost-security" class="text-cyan-400 font-mono">R7,200</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-700">
+                                <span class="text-slate-300">AZ-500 (Security Engineer)</span>
+                                <span id="cost-az500" class="text-cyan-400 font-mono">R3,000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-700">
+                                <span class="text-slate-300">AZ-400 (DevOps Expert)</span>
+                                <span id="cost-az400" class="text-cyan-400 font-mono">R3,000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-700">
+                                <span class="text-slate-300">TryHackMe (6 Months)</span>
+                                <span id="cost-thm" class="text-cyan-400 font-mono">R600</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-3 font-bold text-lg">
+                                <span class="text-white">Total Investment</span>
+                                <span id="total-cost" class="text-green-400 font-mono">~R15,600</span>
+                            </div>
+                            <div class="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                                <p class="text-xs text-yellow-400 flex items-center">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    SA pricing includes estimated exam voucher costs. Actual prices may vary by provider.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Pathway Map - Updated to 6 Months -->
+    <section id="pathway" class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">6-Month Accelerated Pathway</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Your journey from beginner to job-ready cybersecurity professional in just 6 months</p>
+            </div>
+
+            <div class="relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 pathway-line rounded-full"></div>
+
+                <!-- Phase 1 - Months 1-2 -->
+                <div class="relative mb-16 md:mb-24">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 mb-8 md:mb-0 md:text-right">
+                            <div class="glass-effect rounded-2xl p-6 border border-slate-700 phase-card cursor-pointer" onclick="togglePhase('phase1')">
+                                <div class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold mb-3">MONTHS 1-2</div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Phase 1: Foundations</h3>
+                                <p class="text-slate-400 text-sm mb-4">Accelerated core knowledge with Azure basics, networking fundamentals, and Security+ certification</p>
+                                <div class="flex items-center justify-end space-x-2 text-cyan-400 text-sm">
+                                    <span>View Details</span>
+                                    <i class="fas fa-chevron-down transition-transform" id="icon-phase1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-blue-500 border-4 border-slate-900 items-center justify-center z-10">
+                            <span class="text-white font-bold">1</span>
+                        </div>
+                        <div class="md:w-5/12"></div>
+                    </div>
+                    <!-- Expanded Content -->
+                    <div id="phase1" class="hidden mt-6 max-w-3xl mx-auto">
+                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-cloud text-blue-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">AZ-900</h4>
+                                    <p class="text-xs text-slate-400">Azure Fundamentals</p>
+                                    <span class="text-xs text-cyan-400">1-2 weeks</span>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-shield-alt text-green-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">Security+</h4>
+                                    <p class="text-xs text-slate-400">Core Security Concepts</p>
+                                    <span class="text-xs text-cyan-400">4-5 weeks</span>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-terminal text-purple-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">TryHackMe</h4>
+                                    <p class="text-xs text-slate-400">Pre-Security & Intro</p>
+                                    <span class="text-xs text-cyan-400">~10 hours</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item1')" data-phase="phase1" data-id="phase1-item1">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Pass AZ-900 Exam</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item2')" data-phase="phase1" data-id="phase1-item2">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Complete Pre-Security Path</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item3')" data-phase="phase1" data-id="phase1-item3">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Pass Security+ Exam</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item4')" data-phase="phase1" data-id="phase1-item4">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Build Azure Honeypot Project</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase1-item5')" data-phase="phase1" data-id="phase1-item5">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Build Network Traffic Analyzer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 - Months 3-4 -->
+                <div class="relative mb-16 md:mb-24">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12"></div>
+                        <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-cyan-500 border-4 border-slate-900 items-center justify-center z-10">
+                            <span class="text-white font-bold">2</span>
+                        </div>
+                        <div class="md:w-5/12 mb-8 md:mb-0 md:text-left">
+                            <div class="glass-effect rounded-2xl p-6 border border-slate-700 phase-card cursor-pointer" onclick="togglePhase('phase2')">
+                                <div class="inline-block px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold mb-3">MONTHS 3-4</div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Phase 2: SOC & Cloud Security</h3>
+                                <p class="text-slate-400 text-sm mb-4">Intensive Security Operations, Azure Security Engineer certification, and SIEM mastery</p>
+                                <div class="flex items-center space-x-2 text-cyan-400 text-sm">
+                                    <span>View Details</span>
+                                    <i class="fas fa-chevron-down transition-transform" id="icon-phase2"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="phase2" class="hidden mt-6 max-w-3xl mx-auto">
+                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-user-shield text-cyan-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">SOC Level 1</h4>
+                                    <p class="text-xs text-slate-400">TryHackMe Path</p>
+                                    <span class="text-xs text-cyan-400">30-40 hours</span>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-lock text-red-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">AZ-500</h4>
+                                    <p class="text-xs text-slate-400">Azure Security Engineer</p>
+                                    <span class="text-xs text-cyan-400">4-5 weeks</span>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-chart-line text-yellow-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">SIEM Mastery</h4>
+                                    <p class="text-xs text-slate-400">Splunk & ELK Stack</p>
+                                    <span class="text-xs text-cyan-400">~10 hours</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item1')" data-phase="phase2" data-id="phase2-item1">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Complete SOC Level 1 Path</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item2')" data-phase="phase2" data-id="phase2-item2">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Pass AZ-500 Exam</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item3')" data-phase="phase2" data-id="phase2-item3">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Master Splunk & ELK</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item4')" data-phase="phase2" data-id="phase2-item4">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Build Home SOC Lab</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase2-item5')" data-phase="phase2" data-id="phase2-item5">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Build SIEM Dashboard Project</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 - Months 5-6 -->
+                <div class="relative">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 mb-8 md:mb-0 md:text-right">
+                            <div class="glass-effect rounded-2xl p-6 border border-slate-700 phase-card cursor-pointer" onclick="togglePhase('phase3')">
+                                <div class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold mb-3">MONTHS 5-6</div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Phase 3: DevSecOps</h3>
+                                <p class="text-slate-400 text-sm mb-4">Automation, CI/CD security, Azure DevOps Expert certification, and advanced projects</p>
+                                <div class="flex items-center justify-end space-x-2 text-cyan-400 text-sm">
+                                    <span>View Details</span>
+                                    <i class="fas fa-chevron-down transition-transform" id="icon-phase3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-purple-500 border-4 border-slate-900 items-center justify-center z-10">
+                            <span class="text-white font-bold">3</span>
+                        </div>
+                        <div class="md:w-5/12"></div>
+                    </div>
+                    <div id="phase3" class="hidden mt-6 max-w-3xl mx-auto">
+                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fab fa-git-alt text-orange-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">Git & CI/CD</h4>
+                                    <p class="text-xs text-slate-400">Version Control Basics</p>
+                                    <span class="text-xs text-cyan-400">10-12 hours</span>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fas fa-infinity text-purple-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">AZ-400</h4>
+                                    <p class="text-xs text-slate-400">DevOps Engineer Expert</p>
+                                    <span class="text-xs text-cyan-400">5-6 weeks</span>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-4 text-center">
+                                    <i class="fab fa-docker text-blue-400 text-2xl mb-2"></i>
+                                    <h4 class="font-semibold text-white">DevSecOps</h4>
+                                    <p class="text-xs text-slate-400">Container Security</p>
+                                    <span class="text-xs text-cyan-400">~8 hours</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item1')" data-phase="phase3" data-id="phase3-item1">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Master Git & GitHub Actions</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item2')" data-phase="phase3" data-id="phase3-item2">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Pass AZ-400 Exam</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item3')" data-phase="phase3" data-id="phase3-item3">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Complete DevSecOps Path</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item4')" data-phase="phase3" data-id="phase3-item4">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Build Secure CI/CD Pipeline</span>
+                                </div>
+                                <div class="checklist-item flex items-center p-3 rounded-lg border border-slate-600 cursor-pointer" onclick="toggleCheck(this, 'phase3-item5')" data-phase="phase3" data-id="phase3-item5">
+                                    <div class="w-5 h-5 rounded border-2 border-slate-500 mr-3 flex items-center justify-center check-box">
+                                        <i class="fas fa-check text-xs text-white hidden"></i>
+                                    </div>
+                                    <span class="text-sm">Build Threat Hunting Project</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Phases Section -->
+    <section id="phases" class="py-20 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">6-Month Accelerated Learning Paths</h2>
+            
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="switchTab('foundations')" id="tab-foundations" class="tab-btn px-6 py-3 rounded-lg bg-cyan-500 text-white font-medium transition-all">Phase 1: Foundations (Months 1-2)</button>
+                <button onclick="switchTab('soc')" id="tab-soc" class="tab-btn px-6 py-3 rounded-lg bg-slate-700 text-slate-300 font-medium hover:bg-slate-600 transition-all">Phase 2: SOC & Cloud (Months 3-4)</button>
+                <button onclick="switchTab('devsecops')" id="tab-devsecops" class="tab-btn px-6 py-3 rounded-lg bg-slate-700 text-slate-300 font-medium hover:bg-slate-600 transition-all">Phase 3: DevSecOps (Months 5-6)</button>
+            </div>
+
+            <!-- Phase 1 Content -->
+            <div id="content-foundations" class="tab-content">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- AZ-900 -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                    <i class="fas fa-cloud text-blue-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">AZ-900</h3>
+                                    <p class="text-sm text-slate-400">Azure Fundamentals</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold">1-2 WEEKS</span>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div class="flex items-center text-sm text-slate-300">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                Cloud concepts (IaaS, PaaS, SaaS)
+                            </div>
+                            <div class="flex items-center text-sm text-slate-300">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                Core Azure services & networking
+                            </div>
+                            <div class="flex items-center text-sm text-slate-300">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                Security, privacy, compliance basics
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="text-sm font-semibold text-white mb-2">Study Resources</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li><a href="https://learn.microsoft.com/en-us/certifications/exams/az-900" target="_blank" class="resource-link text-cyan-400 hover:text-cyan-300">Microsoft Learn (Free)</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=pY0LnKiDwRA" target="_blank" class="resource-link text-cyan-400 hover:text-cyan-300">John Savill's Crash Course</a></li>
+                                <li><a href="https://tutorialsdojo.com/microsoft-azure-az-900/" target="_blank" class="resource-link text-cyan-400 hover:text-cyan-300">TutorialsDojo Practice Tests (R300)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Security+ -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-green-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">CompTIA Security+</h3>
+                                    <p class="text-sm text-slate-400">Core Security Certification</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold">4-5 WEEKS</span>
+                        </div>
+                        <div class="space-y-3 mb-4">
+                            <div class="flex items-center text-sm text-slate-300">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                Threats, attacks, vulnerabilities
+                            </div>
+                            <div class="flex items-center text-sm text-slate-300">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                Architecture & design concepts
+                            </div>
+                            <div class="flex items-center text-sm text-slate-300">
+                                <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                                Incident response & governance
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="text-sm font-semibold text-white mb-2">Study Resources</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li><a href="https://www.professormesser.com/security-plus/sy0-701/" target="_blank" class="resource-link text-cyan-400 hover:text-cyan-300">Professor Messer (Free)</a></li>
+                                <li><a href="https://www.udemy.com/course/comptia-security-sy0-701-practice-exams/" target="_blank" class="resource-link text-cyan-400 hover:text-cyan-300">Jason Dion Practice Exams (R250)</a></li>
+                                <li><span class="text-slate-400">Darril Gibson's Book (R550)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- TryHackMe Pre-Security -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700 lg:col-span-2">
+                        <h3 class="text-xl font-bold text-white mb-4">TryHackMe: Pre-Security & Intro to Cyber</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-cyan-400 mb-2">Pre-Security Path (~6-8 hours)</h4>
+                                <ul class="space-y-2 text-sm text-slate-300">
+                                    <li class="flex items-center"><i class="fas fa-network-wired text-slate-500 mr-2 w-4"></i> Network Fundamentals (OSI, TCP/IP)</li>
+                                    <li class="flex items-center"><i class="fas fa-globe text-slate-500 mr-2 w-4"></i> How The Web Works (DNS, HTTP/HTTPS)</li>
+                                    <li class="flex items-center"><i class="fab fa-linux text-slate-500 mr-2 w-4"></i> Linux Fundamentals</li>
+                                    <li class="flex items-center"><i class="fab fa-windows text-slate-500 mr-2 w-4"></i> Windows Fundamentals</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-cyan-400 mb-2">Intro to Cyber Security (~2-3 hours)</h4>
+                                <ul class="space-y-2 text-sm text-slate-300">
+                                    <li class="flex items-center"><i class="fas fa-user-secret text-slate-500 mr-2 w-4"></i> Intro to Offensive Security</li>
+                                    <li class="flex items-center"><i class="fas fa-shield-alt text-slate-500 mr-2 w-4"></i> Intro to Defensive Security</li>
+                                    <li class="flex items-center"><i class="fas fa-briefcase text-slate-500 mr-2 w-4"></i> Careers in Cyber</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2 Content -->
+            <div id="content-soc" class="tab-content hidden">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- SOC Level 1 -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700 lg:col-span-2">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                                    <i class="fas fa-user-shield text-cyan-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">TryHackMe: SOC Level 1 Path</h3>
+                                    <p class="text-sm text-slate-400">Complete Security Operations Training</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold">30-40 HOURS</span>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-white mb-2 text-sm">Cyber Defense Frameworks</h4>
+                                <ul class="text-xs text-slate-400 space-y-1">
+                                    <li>• Pyramid of Pain</li>
+                                    <li>• Cyber Kill Chain</li>
+                                    <li>• MITRE ATT&CK</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-white mb-2 text-sm">Network Security</h4>
+                                <ul class="text-xs text-slate-400 space-y-1">
+                                    <li>• Snort IDS/IPS</li>
+                                    <li>• Zeek Network Monitoring</li>
+                                    <li>• Brim Analysis</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-white mb-2 text-sm">Endpoint Security</h4>
+                                <ul class="text-xs text-slate-400 space-y-1">
+                                    <li>• Wazuh EDR</li>
+                                    <li>• YARA Rules</li>
+                                    <li>• Osquery</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/30 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-3">SIEM & Log Analysis Modules</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-700 rounded-full text-xs text-cyan-400">Splunk 101</span>
+                                <span class="px-3 py-1 bg-slate-700 rounded-full text-xs text-cyan-400">Splunk 2</span>
+                                <span class="px-3 py-1 bg-slate-700 rounded-full text-xs text-cyan-400">ELK Stack</span>
+                                <span class="px-3 py-1 bg-slate-700 rounded-full text-xs text-cyan-400">Windows Event Logs</span>
+                                <span class="px-3 py-1 bg-slate-700 rounded-full text-xs text-cyan-400">Incident Response</span>
+                                <span class="px-3 py-1 bg-slate-700 rounded-full text-xs text-cyan-400">Phishing Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AZ-500 -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-lg bg-red-500/20 flex items-center justify-center">
+                                    <i class="fas fa-lock text-red-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">AZ-500</h3>
+                                    <p class="text-sm text-slate-400">Azure Security Engineer</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold">4-5 WEEKS</span>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Identity & Access</span>
+                                <span class="text-cyan-400 font-mono">30-35%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-red-400 h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Platform Protection</span>
+                                <span class="text-cyan-400 font-mono">15-20%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-red-400 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Security Operations</span>
+                                <span class="text-cyan-400 font-mono">20-25%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-red-400 h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Data & Applications</span>
+                                <span class="text-cyan-400 font-mono">20-25%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-red-400 h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="text-sm font-semibold text-white mb-2">Key Topics</h4>
+                            <ul class="space-y-1 text-xs text-slate-400">
+                                <li>• Azure AD, RBAC, PIM</li>
+                                <li>• Microsoft Sentinel & Defender</li>
+                                <li>• Azure Firewall, DDoS Protection</li>
+                                <li>• Key Vault, App Security</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SIEM Rooms -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                        <h3 class="text-lg font-bold text-white mb-4">Essential SIEM Rooms</h3>
+                        <div class="space-y-3">
+                            <a href="https://tryhackme.com/room/splunk101" target="_blank" class="block bg-slate-900/50 rounded-lg p-3 hover:bg-slate-700/50 transition-colors">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white font-medium">Splunk 101</span>
+                                    <span class="text-xs text-slate-400">2 hrs</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Log analysis and searching basics</p>
+                            </a>
+                            <a href="https://tryhackme.com/room/splunk2" target="_blank" class="block bg-slate-900/50 rounded-lg p-3 hover:bg-slate-700/50 transition-colors">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white font-medium">Splunk 2</span>
+                                    <span class="text-xs text-slate-400">2 hrs</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Advanced queries and dashboards</p>
+                            </a>
+                            <a href="https://tryhackme.com/room/elasticstack" target="_blank" class="block bg-slate-900/50 rounded-lg p-3 hover:bg-slate-700/50 transition-colors">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white font-medium">Elastic Stack</span>
+                                    <span class="text-xs text-slate-400">1.5 hrs</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">ELK stack fundamentals</p>
+                            </a>
+                            <a href="https://tryhackme.com/room/windowseventlogs" target="_blank" class="block bg-slate-900/50 rounded-lg p-3 hover:bg-slate-700/50 transition-colors">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white font-medium">Windows Event Logs</span>
+                                    <span class="text-xs text-slate-400">2 hrs</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Forensic analysis techniques</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3 Content -->
+            <div id="content-devsecops" class="tab-content hidden">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- AZ-400 -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                                    <i class="fas fa-infinity text-purple-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">AZ-400</h3>
+                                    <p class="text-sm text-slate-400">Azure DevOps Engineer Expert</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold">5-6 WEEKS</span>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Build/Release Pipelines</span>
+                                <span class="text-cyan-400 font-mono">40-45%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-purple-400 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Source Control</span>
+                                <span class="text-cyan-400 font-mono">15-20%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-purple-400 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-300">Security & Compliance</span>
+                                <span class="text-cyan-400 font-mono">10-15%</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-purple-400 h-2 rounded-full" style="width: 15%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="text-sm font-semibold text-white mb-2">Prerequisites</h4>
+                            <p class="text-xs text-slate-400 mb-2">Must have either:</p>
+                            <ul class="space-y-1 text-xs text-slate-300">
+                                <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> AZ-104 (Azure Administrator)</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> AZ-204 (Azure Developer)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- DevSecOps Path -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                        <h3 class="text-lg font-bold text-white mb-4">DevSecOps Learning Path</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 rounded bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fab fa-git-alt text-orange-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white text-sm">Git & CI/CD Basics</h4>
+                                    <p class="text-xs text-slate-400">GitHub Skills, Actions, Azure DevOps (10-12 hrs)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 rounded bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-shield-alt text-blue-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white text-sm">CI/CD Security</h4>
+                                    <p class="text-xs text-slate-400">Pipeline security, secret management</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 rounded bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fab fa-docker text-cyan-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white text-sm">Container Security</h4>
+                                    <p class="text-xs text-slate-400">Docker Security, Kubernetes Basics</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 rounded bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-code text-green-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white text-sm">Secure Coding</h4>
+                                    <p class="text-xs text-slate-400">SonarQube, SAST/DAST integration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Architecture -->
+                    <div class="glass-effect rounded-2xl p-6 border border-slate-700 lg:col-span-2">
+                        <h3 class="text-lg font-bold text-white mb-4">Secure CI/CD Pipeline Architecture</h3>
+                        <div class="bg-slate-900 rounded-lg p-6 overflow-x-auto">
+                            <div class="flex items-center justify-between min-w-[800px]">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 rounded-lg bg-slate-700 flex items-center justify-center mb-2 mx-auto">
+                                        <i class="fab fa-github text-white text-2xl"></i>
+                                    </div>
+                                    <span class="text-xs text-slate-400">GitHub Repo</span>
+                                </div>
+                                <div class="w-8 h-1 bg-slate-600"></div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 rounded-lg bg-blue-600 flex items-center justify-center mb-2 mx-auto">
+                                        <i class="fas fa-cogs text-white text-2xl"></i>
+                                    </div>
+                                    <span class="text-xs text-slate-400">CI/CD Pipeline</span>
+                                </div>
+                                <div class="w-8 h-1 bg-slate-600"></div>
+                                <div class="grid grid-cols-2 gap-2 min-w-[200px]">
+                                    <div class="bg-slate-700 rounded p-2 text-center">
+                                        <i class="fas fa-vial text-green-400 mb-1"></i>
+                                        <div class="text-[10px] text-slate-300">Unit Tests</div>
+                                    </div>
+                                    <div class="bg-slate-700 rounded p-2 text-center">
+                                        <i class="fas fa-search text-yellow-400 mb-1"></i>
+                                        <div class="text-[10px] text-slate-300">SonarQube</div>
+                                    </div>
+                                    <div class="bg-slate-700 rounded p-2 text-center">
+                                        <i class="fas fa-bug text-red-400 mb-1"></i>
+                                        <div class="text-[10px] text-slate-300">Snyk Scan</div>
+                                    </div>
+                                    <div class="bg-slate-700 rounded p-2 text-center">
+                                        <i class="fab fa-docker text-blue-400 mb-1"></i>
+                                        <div class="text-[10px] text-slate-300">Trivy</div>
+                                    </div>
+                                </div>
+                                <div class="w-8 h-1 bg-slate-600"></div>
+                                <div class="text-center">
+                                    <div class="w-16 h-16 rounded-lg bg-green-600 flex items-center justify-center mb-2 mx-auto">
+                                        <i class="fas fa-rocket text-white text-2xl"></i>
+                                    </div>
+                                    <span class="text-xs text-slate-400">Deploy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Projects - 5 Projects -->
+    <section id="projects" class="py-20 bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">5 Portfolio Projects</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Build these tangible work samples to prove your skills to employers</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-globe-americas text-8xl text-white/20 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <i class="fas fa-bullseye text-4xl text-white mb-2"></i>
+                            <h3 class="text-white font-bold text-lg">Azure Honeypot</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold">PHASE 1</span>
+                            <span class="text-slate-400 text-sm"><i class="fas fa-clock mr-1"></i>3-4 hours</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Live Attack Map</h4>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Deploy a vulnerable VM in Azure that attracts real attackers, with a live map showing attack locations using Microsoft Sentinel.
+                        </p>
+                        <ul class="space-y-2 mb-4 text-sm text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Azure VM Deployment</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Log Analytics Workspace</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>KQL Query Writing</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Sentinel Workbooks</li>
+                        </ul>
+                        <div class="bg-slate-900/50 rounded-lg p-3">
+                            <span class="text-xs text-slate-500 uppercase font-bold">Cost</span>
+                            <p class="text-cyan-400 font-mono currency-amount" data-usd="$20-30" data-zar="R350-550">R350-550 (Azure credits)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-network-wired text-8xl text-white/20 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <i class="fas fa-chart-line text-4xl text-white mb-2"></i>
+                            <h3 class="text-white font-bold text-lg">Network Traffic Analyzer</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold">PHASE 1</span>
+                            <span class="text-slate-400 text-sm"><i class="fas fa-clock mr-1"></i>4-5 hours</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Wireshark & Network Analysis</h4>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Capture and analyze network traffic to identify suspicious patterns. Set up custom filters and create a network monitoring dashboard.
+                        </p>
+                        <ul class="space-y-2 mb-4 text-sm text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Wireshark Deep Dive</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Custom Filter Creation</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Protocol Analysis</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Threat Detection Rules</li>
+                        </ul>
+                        <div class="bg-slate-900/50 rounded-lg p-3">
+                            <span class="text-xs text-slate-500 uppercase font-bold">Cost</span>
+                            <p class="text-green-400 font-mono currency-amount" data-usd="Free" data-zar="Free">Free (Local Tools)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
+                    <div class="h-48 bg-gradient-to-br from-cyan-600 to-teal-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-server text-8xl text-white/20 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <i class="fas fa-shield-halved text-4xl text-white mb-2"></i>
+                            <h3 class="text-white font-bold text-lg">Home SOC Lab</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold">PHASE 2</span>
+                            <span class="text-slate-400 text-sm"><i class="fas fa-clock mr-1"></i>8-10 hours</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Complete SOC Environment</h4>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Build a complete security operations center using virtual machines: pfSense firewall, Splunk SIEM, Snort IDS, and attack simulation.
+                        </p>
+                        <ul class="space-y-2 mb-4 text-sm text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>VirtualBox/VMware Setup</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>pfSense Firewall Config</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Snort IDS/IPS</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Attack Simulation (Kali)</li>
+                        </ul>
+                        <div class="bg-slate-900/50 rounded-lg p-3">
+                            <span class="text-xs text-slate-500 uppercase font-bold">Cost</span>
+                            <p class="text-green-400 font-mono currency-amount" data-usd="Free" data-zar="Free">Free (Local VMs)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
+                    <div class="h-48 bg-gradient-to-br from-yellow-600 to-orange-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-chart-pie text-8xl text-white/20 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <i class="fas fa-dashboard text-4xl text-white mb-2"></i>
+                            <h3 class="text-white font-bold text-lg">SIEM Dashboard</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold">PHASE 2</span>
+                            <span class="text-slate-400 text-sm"><i class="fas fa-clock mr-1"></i>5-6 hours</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Splunk/ELK Security Dashboard</h4>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Create a comprehensive security dashboard in Splunk or ELK that visualizes failed logins, firewall alerts, and suspicious activities in real-time.
+                        </p>
+                        <ul class="space-y-2 mb-4 text-sm text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Data Ingestion Setup</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Search Queries (SPL/KQL)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Visualization Creation</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Alert Configuration</li>
+                        </ul>
+                        <div class="bg-slate-900/50 rounded-lg p-3">
+                            <span class="text-xs text-slate-500 uppercase font-bold">Cost</span>
+                            <p class="text-green-400 font-mono currency-amount" data-usd="Free" data-zar="Free">Free (Splunk Free/ELK)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-code-branch text-8xl text-white/20 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <i class="fas fa-shield-alt text-4xl text-white mb-2"></i>
+                            <h3 class="text-white font-bold text-lg">Secure CI/CD</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold">PHASE 3</span>
+                            <span class="text-slate-400 text-sm"><i class="fas fa-clock mr-1"></i>6-8 hours</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">DevSecOps Pipeline</h4>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Automated pipeline with security scanning: SonarQube code analysis, Snyk dependency check, Trivy container scan, and automated deployment.
+                        </p>
+                        <ul class="space-y-2 mb-4 text-sm text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>GitHub Actions Workflow</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>SAST/DAST Integration</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Container Security</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Infrastructure as Code</li>
+                        </ul>
+                        <div class="bg-slate-900/50 rounded-lg p-3">
+                            <span class="text-xs text-slate-500 uppercase font-bold">Cost</span>
+                            <p class="text-green-400 font-mono currency-amount" data-usd="Free" data-zar="Free">Free (GitHub Free Tier)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 - Extra to make 2 rows of 3 -->
+                <div class="glass-effect rounded-2xl overflow-hidden border border-slate-700 phase-card">
+                    <div class="h-48 bg-gradient-to-br from-red-600 to-pink-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-search text-8xl text-white/20 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <i class="fas fa-bug text-4xl text-white mb-2"></i>
+                            <h3 class="text-white font-bold text-lg">Threat Hunting</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold">PHASE 3</span>
+                            <span class="text-slate-400 text-sm"><i class="fas fa-clock mr-1"></i>5-7 hours</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Proactive Threat Hunting</h4>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Simulate advanced persistent threats (APT) and develop techniques to proactively hunt for them using Zeek, RITA, and custom detection rules.
+                        </p>
+                        <ul class="space-y-2 mb-4 text-sm text-slate-300">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>APT Simulation Setup</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Zeek Network Analysis</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>RITA Framework</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2 text-xs"></i>Sigma Rule Creation</li>
+                        </ul>
+                        <div class="bg-slate-900/50 rounded-lg p-3">
+                            <span class="text-xs text-slate-500 uppercase font-bold">Cost</span>
+                            <p class="text-green-400 font-mono currency-amount" data-usd="Free" data-zar="Free">Free (Open Source)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Opportunities -->
+    <section id="careers" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">SA Career Progression</h2>
+            
+            <div class="space-y-8">
+                <!-- Entry Level -->
+                <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Entry-Level Roles</h3>
+                            <p class="text-slate-400">After Phase 1 (Months 1-2)</p>
+                        </div>
+                        <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-400 font-bold currency-amount" data-usd="$55k - $80k" data-zar="R300k - R450k">R300k - R450k</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Junior SOC Analyst</h4>
+                            <p class="text-xs text-slate-400 mb-2">Security+ required</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$55k - $75k" data-zar="R300k - R400k">R300k - R400k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Security Administrator</h4>
+                            <p class="text-xs text-slate-400 mb-2">Security+ required</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$60k - $80k" data-zar="R320k - R450k">R320k - R450k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Azure Support Engineer</h4>
+                            <p class="text-xs text-slate-400 mb-2">AZ-900 required</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$50k - $70k" data-zar="R280k - R400k">R280k - R400k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">IT Security Specialist</h4>
+                            <p class="text-xs text-slate-400 mb-2">Security+, AZ-900</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$60k - $80k" data-zar="R320k - R450k">R320k - R450k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mid Level -->
+                <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Mid-Level Roles</h3>
+                            <p class="text-slate-400">After Phase 2 (Months 3-4)</p>
+                        </div>
+                        <span class="px-4 py-2 rounded-full bg-cyan-500/20 text-cyan-400 font-bold currency-amount" data-usd="$80k - $110k" data-zar="R450k - R650k">R450k - R650k</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">SOC Analyst</h4>
+                            <p class="text-xs text-slate-400 mb-2">Security+, SOC experience</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$70k - $90k" data-zar="R400k - R520k">R400k - R520k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Azure Security Engineer</h4>
+                            <p class="text-xs text-slate-400 mb-2">AZ-500 required</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$90k - $120k" data-zar="R520k - R700k">R520k - R700k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Cloud Security Analyst</h4>
+                            <p class="text-xs text-slate-400 mb-2">AZ-500, Security+</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$85k - $110k" data-zar="R500k - R650k">R500k - R650k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Security Operations Engineer</h4>
+                            <p class="text-xs text-slate-400 mb-2">SIEM expertise</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$80k - $105k" data-zar="R480k - R620k">R480k - R620k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Level -->
+                <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Advanced Roles</h3>
+                            <p class="text-slate-400">After Phase 3 (Months 5-6)</p>
+                        </div>
+                        <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-400 font-bold currency-amount" data-usd="$110k - $160k+" data-zar="R650k - R950k+">R650k - R950k+</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">DevSecOps Engineer</h4>
+                            <p class="text-xs text-slate-400 mb-2">AZ-400, AZ-500</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$110k - $140k" data-zar="R650k - R850k">R650k - R850k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Cloud Security Architect</h4>
+                            <p class="text-xs text-slate-400 mb-2">AZ-500, experience</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$130k - $160k" data-zar="R750k - R950k">R750k - R950k</span>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
+                            <h4 class="font-semibold text-white mb-1">Security Engineering Lead</h4>
+                            <p class="text-xs text-slate-400 mb-2">Multiple certs + portfolio</p>
+                            <span class="text-cyan-400 font-mono text-sm currency-amount" data-usd="$140k - $180k+" data-zar="R850k - R1.1M+">R850k - R1.1M+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="py-20 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">Quick Reference</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 6-Month Timeline -->
+                <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-calendar-alt text-cyan-400 mr-2"></i>
+                        6-Month Accelerated Timeline
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-semibold">Month 1-2: Foundations</span>
+                                <span class="text-xs text-cyan-400">8-10 hrs/week</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2 mb-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 33%"></div>
+                            </div>
+                            <ul class="text-xs text-slate-400 list-disc list-inside">
+                                <li>AZ-900 Certification (Week 1-2)</li>
+                                <li>TryHackMe Pre-Security (Week 2-3)</li>
+                                <li>Security+ Certification (Week 3-8)</li>
+                                <li>Projects: Honeypot, Network Analyzer</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-semibold">Month 3-4: SOC & Cloud</span>
+                                <span class="text-xs text-cyan-400">12-15 hrs/week</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2 mb-2">
+                                <div class="bg-cyan-500 h-2 rounded-full" style="width: 66%"></div>
+                            </div>
+                            <ul class="text-xs text-slate-400 list-disc list-inside">
+                                <li>SOC Level 1 Path (Week 9-12)</li>
+                                <li>AZ-500 Certification (Week 11-16)</li>
+                                <li>SIEM Mastery (Week 15-16)</li>
+                                <li>Projects: SOC Lab, SIEM Dashboard</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-white font-semibold">Month 5-6: DevSecOps</span>
+                                <span class="text-xs text-cyan-400">15-18 hrs/week</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2 mb-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <ul class="text-xs text-slate-400 list-disc list-inside">
+                                <li>Git & CI/CD (Week 17-18)</li>
+                                <li>AZ-400 Certification (Week 18-24)</li>
+                                <li>DevSecOps Path (Week 20-24)</li>
+                                <li>Projects: CI/CD Pipeline, Threat Hunting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SA Job Market Info -->
+                <div class="glass-effect rounded-2xl p-6 border border-slate-700">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-briefcase text-green-400 mr-2"></i>
+                        South African Job Market
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="font-semibold text-white mb-2">Top Hiring Companies in SA</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Nedbank</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">FNB</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Standard Bank</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Discovery</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Vodacom</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">MTN</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Telkom</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Microsoft SA</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Amazon SA</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">Nclose</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">SensePost</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded text-xs text-cyan-400">BCX</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-4">
+                            <h4 class="font-semibold text-white mb-2">SA-Specific Resources</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">Cybersecurity Hub SA</a></li>
+                                <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">ISACA South Africa Chapter</a></li>
+                                <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">(ISC)² Johannesburg Chapter</a></li>
+                                <li class="flex items-center"><i class="fas fa-link text-cyan-400 mr-2 text-xs"></i><a href="#" class="text-slate-300 hover:text-cyan-400">ZA Cy
